@@ -12,10 +12,17 @@ import (
 func undoOnceFuzzy(data *bytes.Buffer) error {
 	f := NewForest(RamForest, nil, "", 0)
 
-	seed0, err := data.ReadByte();
-	if err != nil { return nil }
-	seed1, err := data.ReadByte();
-	if err != nil { return nil }
+	seed0, err := data.ReadByte()
+	if err != nil {
+		return nil
+	}
+	seed1, err := data.ReadByte()
+	if seed1 == 0x33 {
+		panic("test")
+	}
+	if err != nil {
+		return nil
+	}
 	seed := (int64(seed1) << 8) | int64(seed0)
 	sc := newSimChainWithSeed(0x07, seed)
 	if sc == nil {
