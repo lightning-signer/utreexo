@@ -55,12 +55,12 @@ jobs:
         cd $GOPATH/src/github.com/${{ github.repository }}
         go test -v ./accumulator
 
-    - name: Run integration tests
-      shell: bash
-      run: |
-        cd $GOPATH/src/github.com/${{ github.repository }}
-        ./test/install_bitcoind.sh
-        ./test/csn_bridge.sh "./cmd/utreexoserver/utreexoserver" "./cmd/utreexoclient/utreexoclient" "${{ github.workspace }}/testdatapath"
+#    - name: Run integration tests
+#      shell: bash
+#      run: |
+#        cd $GOPATH/src/github.com/${{ github.repository }}
+#        ./test/install_bitcoind.sh
+#        ./test/csn_bridge.sh "./cmd/utreexoserver/utreexoserver" "./cmd/utreexoclient/utreexoclient" "${{ github.workspace }}/testdatapath"
 
     - name: Upload testdata
       uses: actions/upload-artifact@v2
